@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Reimbursement {
 
     private int id;
-    private String ticketNumber;
+    private String ticketDescrip;
     private int ticketStatus;
     private int employeeId;
     private int managerId;
@@ -13,12 +13,22 @@ public class Reimbursement {
     public Reimbursement(){
     }
 
-    public Reimbursement(int id, String ticketNumber, int ticketStatus, int employeeId, int managerId) {
+    public Reimbursement(int id, String ticketDescrip, int ticketStatus, int employeeId, int managerId) {
         this.id = id;
-        this.ticketNumber = ticketNumber;
+        this.ticketDescrip = ticketDescrip;
         this.ticketStatus = ticketStatus;
         this.employeeId = employeeId;
         this.managerId = managerId;
+    }
+
+    public Reimbursement(int id, String ticketNumber, int ticketStatus, int employeeId) {
+
+    }
+
+    public Reimbursement(int id, String ticketDescrip, int employeeId) {
+        this.id = id;
+        this.ticketDescrip = ticketDescrip;
+        this.employeeId = employeeId;
     }
 
     public int getId() {
@@ -29,12 +39,10 @@ public class Reimbursement {
         this.id = id;
     }
 
-    public String getTicketNumber() {
-        return ticketNumber;
-    }
+    public String getTicketDescrip() { return ticketDescrip; }
 
-    public void setTicketNumber(String ticketNumber) {
-        this.ticketNumber = ticketNumber;
+    public void setTicketDescrip(String ticketDescrip) {
+        this.ticketDescrip = ticketDescrip;
     }
 
     public int getTicketStatus() {
@@ -64,19 +72,19 @@ public class Reimbursement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reimbursement that = (Reimbursement) o;
-        return id == that.id && ticketStatus == that.ticketStatus && employeeId == that.employeeId && managerId == that.managerId && Objects.equals(ticketNumber, that.ticketNumber);
+        return id == that.id && ticketStatus == that.ticketStatus && employeeId == that.employeeId && managerId == that.managerId && Objects.equals(ticketDescrip, that.ticketDescrip);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ticketNumber, ticketStatus, employeeId, managerId);
+        return Objects.hash(id, ticketDescrip, ticketStatus, employeeId, managerId);
     }
 
     @Override
     public String toString() {
         return "Reimbursement{" +
                 "id=" + id +
-                ", ticketNumber='" + ticketNumber + '\'' +
+                ", ticketNumber='" + ticketDescrip + '\'' +
                 ", ticketStatus=" + ticketStatus +
                 ", employeeId=" + employeeId +
                 ", managerId=" + managerId +

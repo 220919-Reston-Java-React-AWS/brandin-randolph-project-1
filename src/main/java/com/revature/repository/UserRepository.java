@@ -29,6 +29,7 @@ public class UserRepository {
 
             ResultSet rs = pstmt.getGeneratedKeys(); //creates a temporary table for the automatically generated primaryKey
             rs.next(); //retrieves first row
+
             int id = rs.getInt(1); //retrieves first column
 
             return new User(id, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), 1);

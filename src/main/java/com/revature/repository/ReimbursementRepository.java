@@ -21,7 +21,7 @@ public class ReimbursementRepository {
             //Iterate through result set
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String ticketNumber = rs.getString("ticket_number");
+                String ticketNumber = rs.getString("ticket_descrip");
                 int ticketStatus = rs.getInt("ticket_status");
                 int employeeId = rs.getInt("employee_id");
                 int managerId = rs.getInt("manager_id");
@@ -49,7 +49,7 @@ public class ReimbursementRepository {
             //Iterate through result set
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String ticketNumber = rs.getString("ticket_number");
+                String ticketNumber = rs.getString("ticket_descrip");
                 int ticketStatus = rs.getInt("ticket_status");
                 int eId = rs.getInt("employee_id");
                 int managerId = rs.getInt("manager_id");
@@ -88,7 +88,7 @@ public class ReimbursementRepository {
 
             if (rs.next()){
                 int reimbursementId = rs.getInt("id");
-                String ticketNumber = rs.getString("ticket_number");
+                String ticketNumber = rs.getString("ticket_descrip");
                 int status = rs.getInt("ticket_status");
                 int employeeId = rs.getInt("employee_id");
                 int managerId = rs.getInt("manager_id");
@@ -103,44 +103,33 @@ public class ReimbursementRepository {
 
     //reimbursement request sent by employee
 
-    public Reimbursement reimbursementRequest(int id) throws SQLException {
-
-        try (Connection connectionObj = ConnectionFactory.createConnection()) {
-            String sql = "INSERT into reimbursements (id, ticket_number, employee_id) values (?, ?, ?)";
-            PreparedStatement pstmt = connectionObj.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, id);
-
-            ResultSet rs = pstmt.getGeneratedKeys();
-
-             rs.next();
-                int reimbursementId = rs.getInt("id");
-                String ticketNumber = rs.getString("ticket_number");
-                int ticketStatus = rs.getInt("ticket_status");
-                int employeeId = rs.getInt("employee_id");
-                int managerId = rs.getInt("manager_id");
-
-                return new Reimbursement(reimbursementId, ticketNumber, ticketStatus, employeeId, managerId);
-
-
-            }
-        }
-    }
-
-
+//    public Reimbursement reimbursementRequest (Reimbursement reimbursement) throws SQLException {
 //
-//
+//        try(Connection connectionObject = ConnectionFactory.createConnection()){
+//            String sql = "INSERT into reimbursements ( ticket_descrip, employee_id) values (?, ?)";
 //            PreparedStatement pstmt = connectionObject.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 //
-//            pstmt.setString(1, reimbursement.getReimbursementReason());
-//            pstmt.setInt(2, reimbursement.getAmount());
-//            pstmt.setInt(3, reimbursement.getEmployeeId());
+//            pstmt.setString(1,reimbursement.getTicketDescrip());
+//            pstmt.setInt(2,reimbursement.getEmployeeId());
 //
-//            int numberOfRecordsAdded = pstmt.executeUpdate();
+//            int numberOfReimbursementsAdded =  pstmt.executeUpdate();//applies to insert, update, and delete
 //
-//            ResultSet rs = pstmt.getGeneratedKeys();
-//            rs.next();
-//            int id = rs.getInt(1);
+//            ResultSet rs = pstmt.getGeneratedKeys(); //creates a temporary table for the automatically generated primaryKey
+//            rs.next(); //retrieves first row
 //
-//            return new Reimbursement(id, reimbursement.getReimbursementReason(), reimbursement.getAmount(), "pending", reimbursement.getEmployeeId(), reimbursement.getFinancialManagerId());
+//            int id = rs.getInt(1); //retrieves first column
+//
+//                return new Reimbursement(id, reimbursement.getTicketDescrip(), reimbursement.getEmployeeId());
+//
+//
+//            }
 //        }
+
+
+//    public boolean reimbursementRequest(String ticketDescrip, int employeeId) {
+//        return false;
+    //}
+}
+
+
 

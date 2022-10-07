@@ -67,7 +67,7 @@ public class ReimburseController {
 
                     try {
                         reimburseService.updateReimbursement(reimbursementId, ticketStatus, managerId);
-                        ctx.result("Reimbursement status updated");
+                        ctx.result("Reimbursement status approved");
                     } catch (ReimbursementAlreadyUpdatedException | IllegalArgumentException e){
                         ctx.result(e.getMessage());
                         ctx.status(400);
@@ -88,44 +88,26 @@ public class ReimburseController {
         });
 
         //Reimbursement request
-        app.post("/{userID}/reimbursements", (ctx) -> {
-            HttpSession httpSession = ctx.req.getSession();
-            User user = (User) httpSession.getAttribute("user");
-            //Reimbursement rr = ctx.bodyAsClass(Reimbursement.class);
-
-            if (user != null){//check if person is actually logged in
-                ctx.result("You are not logged in");
-                ctx.status(401);
-//                if (user.getRoleId() ==1) { //check if user is employee
-//                    int userId = Integer.parseInt(ctx.pathParam("userId"));
-//                    if (user.getId()==userId){
-//                        try{
-                            //r.setEmployeeId(user.getId());
-//                            r = reimburseService.addNewReimbursement(r);
+//        app.post("/{userID}/reimbursements", (ctx) -> {
+//            HttpSession httpSession = ctx.req.getSession();
+//            User user = (User) httpSession.getAttribute("user");
+//            //Reimbursement rr = ctx.bodyAsClass(Reimbursement.class);
 //
-//                            ctx.json(r);
-//                            ctx.status(201);
-//                        }catch (SQLException e){
-//                            ctx.result(e.getMessage());
-//                            ctx.status(400);
+//            if (user != null){  //check if person is actually logged in
+//                if (user.getRoleId() ==1) { //check if user is an employee
 //
-//                        }
-//                    }else{
-//                        ctx.result("You are not the right user.");
-//                        ctx.status(401);
-//                    }
+//                    int employeeId = user.getId(); //The person logged in is an employee
+//                    int reimbursementId = Integer.parseInt(ctx.pathParam("reimbursementId"));
+//                    try {
+//                        reimburseService.addReimbursement(employeeId);
+//                        ctx.result("Reimbursement status approved");
+//                }
+//            }else {
+//                ctx.result("You are not logged in");
+//                ctx.status(401);
+//            }
 //
-//                }else{
-//                    ctx.result("Your are logged in as Manager");
-//                    ctx.status(401);
-                //}
-
-            }else {
-                ctx.result("You are not logged in");
-                ctx.status(401);
-            }
-
-        });
+//        });
     }
 }
 

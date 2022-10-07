@@ -3,6 +3,7 @@ package com.revature.service;
 import com.revature.exception.ReimbursementAlreadyUpdatedException;
 import com.revature.exception.ReimbursementNotFoundException;
 import com.revature.model.Reimbursement;
+import com.revature.model.User;
 import com.revature.repository.ReimbursementRepository;
 
 import java.sql.SQLException;
@@ -40,8 +41,17 @@ public class ReimburseService {
 
     }
 
-    public Reimbursement addNewReimbursement (Reimbursement reimbursement) throws SQLException {
-        return reimbursementRepository.reimbursementRequest(reimbursement.getId());
-    }
+
+//      public Reimbursement addReimbursement(Reimbursement reimbursement) throws SQLException {
+//
+//          if(reimbursementRepository.reimbursementRequest(reimbursement.getTicketDescrip(),reimbursement.getEmployeeId())){
+//              throw new SQLException("Reimbursement " + reimbursement.getEmployeeId() + " already added");
+//          }
+//
+//          Reimbursement addedReimbursement = reimbursementRepository.reimbursementRequest(reimbursement);
+//          return addedReimbursement;
+//
+//
+   // }
 
 }
